@@ -318,6 +318,21 @@ footer{border-top:var(--edge);padding:26px 0 34px;text-align:center;background:v
 footer .zone{margin-top:10px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 footer .zone b{color:var(--ink)}
 footer .fine{margin-top:8px;font-size:11.5px;color:var(--faint)}
+footer .legal{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;line-height:1.6;color:var(--faint);max-width:64ch;margin-left:auto;margin-right:auto}
+footer .legal a{color:var(--dim);text-decoration:underline}
+footer .legal a:hover{color:var(--gold-dk)}
+
+/* ---------- cookie consent ---------- */
+.cookiebar{position:fixed;left:12px;right:12px;bottom:12px;z-index:95;max-width:640px;margin:0 auto;background:var(--dark);color:#efe9db;border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);display:none;gap:14px;flex-wrap:wrap;align-items:center}
+.cookiebar.show{display:flex}
+.cookiebar p{font-size:12.5px;line-height:1.55;color:#cfc8b8;flex:1 1 320px;margin:0}
+.cookiebar a{color:var(--gold-lt)}
+.cookiebar-actions{display:flex;gap:10px;flex:0 0 auto}
+.cookiebar .btn{padding:11px 16px;font-size:12.5px;border-radius:10px;white-space:nowrap}
+.cookiebar .btn-ghost{border:1px solid rgba(239,233,219,.3);color:#efe9db;background:transparent}
+.cookiebar .btn-ghost:hover{background:rgba(239,233,219,.1);color:#fff}
+@media(max-width:899px){.cookiebar{bottom:calc(76px + env(safe-area-inset-bottom) + 10px)}}
+@media(max-width:520px){.cookiebar{flex-direction:column;align-items:stretch}.cookiebar-actions{justify-content:stretch}.cookiebar-actions .btn{flex:1}}
 
 /* ---------- sticky mobile bar ---------- */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:flex;align-items:center;gap:12px;padding:11px 16px calc(11px + env(safe-area-inset-bottom));background:rgba(250,247,241,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);box-shadow:0 -8px 26px rgba(40,31,12,.08)}
@@ -334,8 +349,10 @@ footer .fine{margin-top:8px;font-size:11.5px;color:var(--faint)}
 .callguard-lock{pointer-events:none}
 .callguard-lock .countdown-badge{margin-left:8px;font-size:.72em;font-weight:normal;opacity:.85;white-space:nowrap;font-family:'Onest',sans-serif}
 </style>
-<!-- Yandex.Metrika counter -->
+<!-- Yandex.Metrika counter: loaded only after cookie consent, see cookie-consent script before </body> -->
 <script type="text/javascript">
+window.loadYandexMetrika = function(){
+    if(window.__ymLoaded) return; window.__ymLoaded = true;
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -344,6 +361,7 @@ footer .fine{margin-top:8px;font-size:11.5px;color:var(--faint)}
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110276447', 'ym');
 
     ym(110276447, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+};
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/110276447" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
@@ -581,6 +599,10 @@ footer .fine{margin-top:8px;font-size:11.5px;color:var(--faint)}
     <div class="f-brand">SOS<i>74</i></div>
     <div class="zone">Выезжаем по <b>Челябинску</b> и области</div>
     <div class="fine">SOS74 · Свердловский проспект, 39 · аварийное вскрытие замков квартир, авто и офисов, замена личинки замка, вскрытие сейфов — круглосуточно по Челябинску и области</div>
+    <div class="legal">
+      Информация на сайте носит справочный характер и не является публичной офертой. SOS74 — информационный ресурс (агрегатор заявок), не является стороной сделок между пользователем и мастером-исполнителем и не несёт ответственности по таким сделкам.
+      <br><a href="privacy.html">Политика обработки персональных данных и файлов cookie</a>
+    </div>
   </div>
 </footer>
 
@@ -590,6 +612,14 @@ footer .fine{margin-top:8px;font-size:11.5px;color:var(--faint)}
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C9.6 21 3 14.4 3 6c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
     Звонить
   </a>
+</div>
+
+<div class="cookiebar" id="cookiebar" role="dialog" aria-live="polite" aria-label="Согласие на использование файлов cookie">
+  <p>Мы используем файлы cookie и сервисы аналитики для работы сайта и улучшения сервиса, а также обрабатываем персональные данные пользователей в соответствии с 152-ФЗ «О персональных данных». Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробнее — в <a href="privacy.html">Политике обработки персональных данных</a>.</p>
+  <div class="cookiebar-actions">
+    <button type="button" class="btn btn-ghost" id="cookieDecline">Только необходимые</button>
+    <button type="button" class="btn btn-gold" id="cookieAccept">Принять</button>
+  </div>
 </div>
 
 <script>
@@ -682,6 +712,35 @@ footer .fine{margin-top:8px;font-size:11.5px;color:var(--faint)}
       });
     });
   });
+</script>
+
+<script>
+// Cookie consent (152-ФЗ «О персональных данных»): Метрика грузится только после согласия
+(function(){
+  var KEY='sos74_cookie_consent';
+  var bar=document.getElementById('cookiebar');
+  var saved;
+  try{ saved=localStorage.getItem(KEY); }catch(e){ saved=null; }
+
+  if(saved==='accepted' && typeof window.loadYandexMetrika==='function'){
+    window.loadYandexMetrika();
+  } else if(!saved && bar){
+    bar.classList.add('show');
+  }
+
+  function setConsent(value){
+    try{ localStorage.setItem(KEY, value); }catch(e){}
+    if(bar) bar.classList.remove('show');
+    if(value==='accepted' && typeof window.loadYandexMetrika==='function'){
+      window.loadYandexMetrika();
+    }
+  }
+
+  var acceptBtn=document.getElementById('cookieAccept');
+  var declineBtn=document.getElementById('cookieDecline');
+  if(acceptBtn) acceptBtn.addEventListener('click', function(){ setConsent('accepted'); });
+  if(declineBtn) declineBtn.addEventListener('click', function(){ setConsent('declined'); });
+})();
 </script>
 </body>
 </html>
