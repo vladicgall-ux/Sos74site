@@ -617,8 +617,7 @@ window.loadYandexMetrika = function(){
 <div class="cookiebar" id="cookiebar" role="dialog" aria-live="polite" aria-label="Согласие на использование файлов cookie">
   <p>Мы используем файлы cookie и сервисы аналитики для работы сайта и улучшения сервиса, а также обрабатываем персональные данные пользователей в соответствии с 152-ФЗ «О персональных данных». Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробнее — в <a href="privacy.html">Политике обработки персональных данных</a>.</p>
   <div class="cookiebar-actions">
-    <button type="button" class="btn btn-ghost" id="cookieDecline">Только необходимые</button>
-    <button type="button" class="btn btn-gold" id="cookieAccept">Принять</button>
+    <button type="button" class="btn btn-gold" id="cookieAccept">Понятно</button>
   </div>
 </div>
 
@@ -715,31 +714,28 @@ window.loadYandexMetrika = function(){
 </script>
 
 <script>
-// Cookie consent (152-ФЗ «О персональных данных»): Метрика грузится только после согласия
+// Уведомление о cookie (152-ФЗ «О персональных данных»): аналитика работает сразу,
+// продолжение использования сайта расценивается как согласие; баннер лишь информирует.
 (function(){
   var KEY='sos74_cookie_consent';
   var bar=document.getElementById('cookiebar');
   var saved;
   try{ saved=localStorage.getItem(KEY); }catch(e){ saved=null; }
 
-  if(saved==='accepted' && typeof window.loadYandexMetrika==='function'){
+  if(typeof window.loadYandexMetrika==='function'){
     window.loadYandexMetrika();
-  } else if(!saved && bar){
+  }
+  if(!saved && bar){
     bar.classList.add('show');
   }
 
-  function setConsent(value){
+  function dismiss(value){
     try{ localStorage.setItem(KEY, value); }catch(e){}
     if(bar) bar.classList.remove('show');
-    if(value==='accepted' && typeof window.loadYandexMetrika==='function'){
-      window.loadYandexMetrika();
-    }
   }
 
   var acceptBtn=document.getElementById('cookieAccept');
-  var declineBtn=document.getElementById('cookieDecline');
-  if(acceptBtn) acceptBtn.addEventListener('click', function(){ setConsent('accepted'); });
-  if(declineBtn) declineBtn.addEventListener('click', function(){ setConsent('declined'); });
+  if(acceptBtn) acceptBtn.addEventListener('click', function(){ dismiss('accepted'); });
 })();
 </script>
 </body>
